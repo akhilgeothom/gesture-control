@@ -1,4 +1,6 @@
 from itertools import cycle
+from PIL import Image, ImageTk
+
 try:
     # Python2
     import Tkinter as tk
@@ -12,7 +14,7 @@ class App(tk.Tk):
         tk.Tk.__init__(self)
         # set x, y position only
         self.geometry('+{}+{}'.format(x, y))
-        self.delay = delay
+        # self.delay = delay
         # allows repeat cycling through the pictures
         # store as (img_object, img_name) tuple
         self.pictures = cycle((tk.PhotoImage(file=image), image)
@@ -35,11 +37,11 @@ delay = 3500
 # get a series of gif images you have in the working folder
 # or use full path, or set directory to where the images are
 image_files = [
-'1.gif',
-'2.gif',
-'3.gif',
-'4.gif',
-'5.gif'
+'gifs/1.gif',
+'gifs/2.gif',
+'gifs/3.gif',
+'gifs/4.gif',
+'gifs/5.gif'
 ]
 
 # upper left corner coordinates of app window
