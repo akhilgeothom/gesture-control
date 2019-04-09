@@ -8,7 +8,7 @@ import math
 pyautogui.FAILSAFE = False
 
 def findDefects():
-    cap = cv2.VideoCapture(2)
+    cap = cv2.VideoCapture(0)
     kernel=(5,5)
     if(cap.isOpened()==False):
         print('Unable to read camera feed')
@@ -17,7 +17,7 @@ def findDefects():
 
     while(True):
         ret, frame = cap.read()
-        frame=cv2.resize(frame,(1920,1080))
+        # frame=cv2.resize(frame,(1920,1080))
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         blur = cv2.bilateralFilter(gray,10,50,50)
         ret,thresh1 = cv2.threshold(blur,110,255,cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)
@@ -43,7 +43,7 @@ def findDefects():
 
         #print(cx,cy,end='\r')
         center = (cx,cy)
-        pyautogui.moveTo(cx,cy)
+        # pyautogui.moveTo(cx,cy)
         cnt = cv2.approxPolyDP(cnt,0.01*cv2.arcLength(cnt,True),True)
 
         drawing = np.zeros(frame.shape,np.uint8)
@@ -95,8 +95,9 @@ def findDefects():
 
 def clicker(count1):
     #print('yo',count1)
-    #print(cx,cy)
-    pyautogui.click(cx,cy,2,0,'left')
+    print(cx,cy)
+    # pyautogui.click(cx,cy,2,0,'left')
 
-cx=0;cy=0;
+cx=0 
+cy=0
 findDefects()
